@@ -1,0 +1,368 @@
+/* ---------------------------------------------------------------------------
+ * Idraulica Piovani — brand layer ("Rame & Calce")
+ *
+ * Loaded after theme.css + typography.css. It only re-points BoardUI tokens
+ * and adds the few semantic tokens the marketing site needs; components keep
+ * using semantic utilities (bg-background-*, text-text-*, border-border-*).
+ *
+ * Palette (named):
+ *   Inchiostro  #0F2330  text, dark bands, footer
+ *   Calce       #F1F2EE  page ground (cool lime-plaster, not cream)
+ *   Rame        #B8612B  accent: pipe line, highlights (ramp below)
+ *   Muschio     #4E6A45  bio-edilizia contexts only
+ *   Acqua       #3B7C99  illustration only (water in drawings)
+ * --------------------------------------------------------------------------- */
+
+@theme {
+  /* Brand primitives */
+  --color-ink-950: #08151d;
+  --color-ink-900: #0f2330;
+  --color-ink-800: #1b3342;
+  --color-ink-700: #2a4556;
+  --color-ink-600: #3d5868;
+  --color-ink-500: #566f7d;
+  --color-ink-400: #7d909a;
+  --color-ink-300: #a9b6bc;
+  --color-ink-200: #cdd5d7;
+  --color-ink-100: #e3e8e8;
+
+  --color-calce-50: #f8f9f6;
+  --color-calce-100: #f1f2ee;
+  --color-calce-200: #e7e9e3;
+  --color-calce-300: #d7dad3;
+
+  --color-muschio-50: #eef2ea;
+  --color-muschio-100: #dce5d5;
+  --color-muschio-600: #4e6a45;
+  --color-muschio-700: #3e5637;
+
+  --color-acqua-500: #3b7c99;
+
+  /* Accent ramp → copper. 600 carries white text at 5.2:1. */
+  --color-accent-50: #fbf3ec;
+  --color-accent-100: #f5e3d3;
+  --color-accent-200: #ebc6a8;
+  --color-accent-300: #dfa57c;
+  --color-accent-400: #cd8250;
+  --color-accent-500: #b8612b;
+  --color-accent-600: #a9551f;
+  --color-accent-700: #8e4520;
+  --color-accent-800: #73381d;
+  --color-accent-900: #5c2e1a;
+  --color-accent-950: #33170c;
+
+  /* Families (next/font exposes the variables on <html>) */
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --font-display: var(--font-archivo), var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+
+  /* Site type scale — composite utilities (size + line-height + tracking +
+   * weight in one class), mobile first; the -lg variants are applied at md+. */
+  --text-hero: 2.625rem;
+  --text-hero--line-height: 1.02;
+  --text-hero--letter-spacing: -0.02em;
+  --text-hero--font-weight: 800;
+  --text-hero-lg: 4.75rem;
+  --text-hero-lg--line-height: 0.98;
+  --text-hero-lg--letter-spacing: -0.025em;
+  --text-hero-lg--font-weight: 800;
+
+  --text-h1: 2.125rem;
+  --text-h1--line-height: 1.08;
+  --text-h1--letter-spacing: -0.015em;
+  --text-h1--font-weight: 800;
+  --text-h1-lg: 3.5rem;
+  --text-h1-lg--line-height: 1.02;
+  --text-h1-lg--letter-spacing: -0.02em;
+  --text-h1-lg--font-weight: 800;
+
+  --text-h2: 1.75rem;
+  --text-h2--line-height: 1.12;
+  --text-h2--letter-spacing: -0.01em;
+  --text-h2--font-weight: 750;
+  --text-h2-lg: 2.5rem;
+  --text-h2-lg--line-height: 1.08;
+  --text-h2-lg--letter-spacing: -0.015em;
+  --text-h2-lg--font-weight: 780;
+
+  --text-h3: 1.25rem;
+  --text-h3--line-height: 1.25;
+  --text-h3--letter-spacing: -0.005em;
+  --text-h3--font-weight: 700;
+  --text-h3-lg: 1.5rem;
+  --text-h3-lg--line-height: 1.2;
+  --text-h3-lg--letter-spacing: -0.01em;
+  --text-h3-lg--font-weight: 700;
+
+  --text-lead: 1.125rem;
+  --text-lead--line-height: 1.6;
+  --text-lead--letter-spacing: 0;
+  --text-lead--font-weight: 400;
+  --text-lead-lg: 1.25rem;
+  --text-lead-lg--line-height: 1.6;
+  --text-lead-lg--letter-spacing: 0;
+  --text-lead-lg--font-weight: 400;
+
+  --text-copy: 1rem;
+  --text-copy--line-height: 1.65;
+  --text-copy--letter-spacing: 0;
+  --text-copy--font-weight: 400;
+  --text-copy-strong: 1rem;
+  --text-copy-strong--line-height: 1.5;
+  --text-copy-strong--letter-spacing: 0;
+  --text-copy-strong--font-weight: 600;
+
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.5;
+  --text-small--letter-spacing: 0;
+  --text-small--font-weight: 400;
+  --text-small-strong: 0.875rem;
+  --text-small-strong--line-height: 1.4;
+  --text-small-strong--letter-spacing: 0;
+  --text-small-strong--font-weight: 600;
+
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.14em;
+  --text-eyebrow--font-weight: 500;
+
+  --text-spec: 0.9375rem;
+  --text-spec--line-height: 1.4;
+  --text-spec--letter-spacing: 0;
+  --text-spec--font-weight: 500;
+
+  --text-stat: 2.5rem;
+  --text-stat--line-height: 1;
+  --text-stat--letter-spacing: -0.02em;
+  --text-stat--font-weight: 700;
+
+  --radius-card: 1.25rem;
+}
+
+/* ---------------------------------------------------------------------------
+ * Semantic re-mapping (light only — the public site does not ship dark mode)
+ * --------------------------------------------------------------------------- */
+:root {
+  --color-background-full: var(--color-calce-100);
+  --color-background-primary-default: var(--color-white);
+  --color-background-inner-default: var(--color-white);
+  --color-background-primary-hover: var(--color-calce-50);
+  --color-background-primary-active: var(--color-calce-200);
+  --color-background-primary-disabled: var(--color-calce-200);
+  --color-background-secondary-default: var(--color-calce-200);
+  --color-background-secondary-hover: var(--color-calce-300);
+  --color-background-tertiary-default: var(--color-calce-300);
+  --color-input-disabled-background: var(--color-calce-200);
+
+  --color-text-primary: var(--color-ink-900);
+  --color-text-secondary: var(--color-ink-600);
+  --color-text-tertiary: var(--color-ink-500);
+  --color-text-placeholder: var(--color-ink-400);
+  --color-text-error-primary: var(--color-red-700);
+
+  --color-foreground-icon-primary: var(--color-ink-900);
+  --color-foreground-icon-secondary: var(--color-ink-600);
+  --color-foreground-icon-tertiary: var(--color-ink-400);
+  --color-foreground-icon-quaternary: var(--color-ink-300);
+
+  /* Inputs need 3:1 against white (WCAG 1.4.11) → ink-400 */
+  --color-border-button-default: var(--color-ink-300);
+  --color-border-button-hover: var(--color-ink-400);
+  --color-border-button-active: var(--color-ink-500);
+  --color-border-checkbox-default: var(--color-ink-400);
+  --color-border-checkbox-hover: var(--color-ink-500);
+  --color-border-error-default: var(--color-red-700);
+  --color-separator-border: var(--color-calce-300);
+  --color-separator-border-strong: var(--color-ink-200);
+  --color-border-focus-ring: var(--color-accent-600);
+
+  /* Flat copper buttons: press darkens, no glossy gradient */
+  --gradient-button-primary-default: linear-gradient(180deg, var(--color-accent-600) 0%, var(--color-accent-600) 100%);
+  --gradient-button-primary-hover: linear-gradient(180deg, var(--color-accent-700) 0%, var(--color-accent-700) 100%);
+  --gradient-button-primary-active: linear-gradient(180deg, var(--color-accent-800) 0%, var(--color-accent-800) 100%);
+  --gradient-button-primary-disabled: linear-gradient(180deg, var(--color-calce-300) 0%, var(--color-calce-300) 100%);
+
+  /* Site-only semantic tokens */
+  --color-background-inverse: var(--color-ink-900);
+  --color-background-inverse-raised: var(--color-ink-800);
+  --color-background-eco: var(--color-muschio-50);
+  --color-background-accent-soft: var(--color-accent-50);
+  --color-text-inverse: var(--color-calce-50);
+  --color-text-inverse-secondary: var(--color-ink-300);
+  --color-text-accent: var(--color-accent-700);
+  --color-text-accent-inverse: var(--color-accent-300);
+  --color-text-eco: var(--color-muschio-700);
+  --color-border-card: var(--color-calce-300);
+  --color-border-inverse: var(--color-ink-700);
+  --color-border-strong: var(--color-ink-900);
+  --color-pipe: var(--color-accent-500);
+  --color-pipe-joint: var(--color-accent-700);
+  --color-illustration-water: var(--color-acqua-500);
+  --color-illustration-line: var(--color-ink-400);
+  --color-background-scrim: rgb(8 21 29 / 0.55);
+}
+
+@theme inline {
+  --color-background-inverse: var(--color-background-inverse);
+  --color-background-inverse-raised: var(--color-background-inverse-raised);
+  --color-background-eco: var(--color-background-eco);
+  --color-background-accent-soft: var(--color-background-accent-soft);
+  --color-text-inverse: var(--color-text-inverse);
+  --color-text-inverse-secondary: var(--color-text-inverse-secondary);
+  --color-text-accent: var(--color-text-accent);
+  --color-text-accent-inverse: var(--color-text-accent-inverse);
+  --color-text-eco: var(--color-text-eco);
+  --color-border-card: var(--color-border-card);
+  --color-border-inverse: var(--color-border-inverse);
+  --color-border-strong: var(--color-border-strong);
+  --color-pipe: var(--color-pipe);
+  --color-pipe-joint: var(--color-pipe-joint);
+  --color-illustration-water: var(--color-illustration-water);
+  --color-illustration-line: var(--color-illustration-line);
+  --color-background-scrim: var(--color-background-scrim);
+}
+
+/* Display face: Archivo on its expanded width axis — reads like an engraved
+ * boiler nameplate. */
+@utility font-display {
+  font-family: var(--font-display);
+  font-stretch: 118%;
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+
+/* Hide scrollbars on horizontal chip rails while keeping them scrollable */
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    font-family: var(--font-sans);
+    touch-action: manipulation;
+  }
+  ::selection {
+    background: var(--color-accent-200);
+    color: var(--color-ink-900);
+  }
+  :where(a) {
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+  }
+  /* Anchored sections clear the sticky header */
+  :where([id]) {
+    scroll-margin-top: 5.5rem;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Signature: the copper pipe. A drawn line that fills in as it scrolls into
+ * view (CSS scroll-driven animation where supported; static otherwise).
+ * --------------------------------------------------------------------------- */
+.pipe-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .pipe-draw {
+      stroke-dashoffset: 1;
+      animation: pipe-fill linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 55%;
+    }
+  }
+}
+
+@keyframes pipe-fill {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Gentle entrance for below-the-fold blocks (BoardUI motion language: fade +
+ * small rise + slight blur, reduced-motion guarded). */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+}
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* Technical-drawing grid used behind spec blocks */
+.tech-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--color-ink-900) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--color-ink-900) 6%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.tech-grid-inverse {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Print: quote summary sheet */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+  }
+}
+
+/* Overlay / sheet motion for React Aria modals (RAC waits for CSS animations
+ * to finish before unmounting, so these are keyframes, not transitions). */
+@keyframes anim-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes anim-fade-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes anim-sheet-in { from { transform: translateX(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes anim-sheet-out { from { transform: none; opacity: 1; } to { transform: translateX(24px); opacity: 0; } }
+@keyframes anim-rise-in { from { transform: translateY(16px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes anim-rise-out { from { transform: none; opacity: 1; } to { transform: translateY(16px); opacity: 0; } }
+
+.anim-fade-in { animation: anim-fade-in 200ms ease-out; }
+.anim-fade-out { animation: anim-fade-out 140ms ease-in forwards; }
+.anim-sheet-in { animation: anim-sheet-in 240ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+.anim-sheet-out { animation: anim-sheet-out 160ms ease-in forwards; }
+.anim-rise-in { animation: anim-rise-in 240ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+.anim-rise-out { animation: anim-rise-out 160ms ease-in forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-fade-in, .anim-fade-out, .anim-sheet-in, .anim-sheet-out, .anim-rise-in, .anim-rise-out {
+    animation-duration: 1ms;
+  }
+}

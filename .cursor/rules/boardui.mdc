@@ -1,14 +1,8 @@
-<!-- BEGIN:nextjs-agent-rules -->
+---
+description: BoardUI design system rules. Always apply when writing or editing UI code in this project.
+alwaysApply: true
+---
 
-# This is NOT the Next.js you know
-
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
-
-This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
-
-<!-- END:nextjs-agent-rules -->
-
-<!-- boardui:rules:start -->
 # BoardUI design rules
 
 This project uses BoardUI (React + Tailwind CSS v4, source-owned components under `components/`). These rules always apply when writing UI code. MCP tools are on demand; these rules are not optional context.
@@ -49,4 +43,3 @@ This project uses BoardUI (React + Tailwind CSS v4, source-owned components unde
 - Focus states: `outline-none focus-visible:ring-2 focus-visible:ring-border-focus-ring`.
 
 When unsure about a token, a component's API, or working example code, ask the BoardUI MCP server: `get_theme`, `get_component`, `get_usage_examples`.
-<!-- boardui:rules:end -->
