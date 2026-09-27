@@ -42,7 +42,7 @@ export const images = {
     height: 299,
     alt: "Casa in legno con serra solare sul lato sud, in collina",
     archive: true,
-    caption: "Casa bio in legno, lato sud con serra solare",
+    caption: "Vista lato sud, serra solare",
   },
   bioInterno: {
     src: "/images/archivio/casa-bio-interno-serra.webp",
@@ -50,7 +50,7 @@ export const images = {
     height: 303,
     alt: "Interno della serra solare con ballatoio in legno",
     archive: true,
-    caption: "Interno della serra solare",
+    caption: "Interno, serra solare",
   },
   bioVista: {
     src: "/images/archivio/casa-bio-vista-valle.webp",
@@ -58,7 +58,7 @@ export const images = {
     height: 299,
     alt: "Vista sulla valle dalle vetrate della serra solare",
     archive: true,
-    caption: "La valle vista dalla serra",
+    caption: "Vista dalla serra solare, lato sud",
   },
   bioInverno: {
     src: "/images/archivio/casa-bio-inverno.webp",
@@ -66,7 +66,7 @@ export const images = {
     height: 299,
     alt: "La casa in legno sotto la neve, vista dal lato ovest",
     archive: true,
-    caption: "Lato ovest, in inverno",
+    caption: "Vista lato ovest",
   },
   bioCantiere1: {
     src: "/images/archivio/casa-bio-cantiere-1.webp",
@@ -74,7 +74,7 @@ export const images = {
     height: 401,
     alt: "Cantiere della casa in legno: fondazioni e prima struttura",
     archive: true,
-    caption: "Cantiere: fondazioni e struttura",
+    caption: "Fase di costruzione",
   },
   bioCantiere2: {
     src: "/images/archivio/casa-bio-cantiere-2.webp",
@@ -82,7 +82,7 @@ export const images = {
     height: 401,
     alt: "Cantiere della casa in legno: telaio portante in legno",
     archive: true,
-    caption: "Cantiere: telaio in legno",
+    caption: "Fase di costruzione",
   },
 } satisfies Record<string, SiteImage>;
 

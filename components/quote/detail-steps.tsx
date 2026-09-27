@@ -25,11 +25,11 @@ export function defaultDetails(category: QuoteCategory): Details {
 }
 
 const REQUIRED: Record<QuoteCategory, string[]> = {
-  caldaia: ["impiantoAttuale", "uso", "abitazione", "fumi"],
-  manutenzione: ["tipo"],
+  caldaia: ["impiantoAttuale", "uso", "abitazione"],
+  manutenzione: [],
   bagno: ["intervento"],
   radiante: ["sistema", "contesto"],
-  solare: ["uso"],
+  solare: [],
   riparazione: ["tipo"],
   acque: [],
   stufe: [],
@@ -130,33 +130,14 @@ export function DetailStep({ category, details, set, errors }: Props & { categor
               { value: "casa-indipendente", title: "Casa indipendente" },
             ]}
           />
-          <ChoiceGroup
-            label="La canna fumaria va adeguata?"
-            help="Le caldaie a condensazione hanno spesso bisogno di uno scarico fumi diverso da quello delle vecchie caldaie."
-            value={v("fumi")}
-            onChange={(x) => set("fumi", x)}
-            error={errors.fumi}
-            options={[
-              { value: "no", title: "No, è già adatta" },
-              { value: "si", title: "Sì" },
-              { value: "non-so", title: "Non lo so", description: "Lo verifichiamo al sopralluogo" },
-            ]}
-          />
         </div>
       );
     case "manutenzione":
       return (
-        <ChoiceGroup
-          label="Che tipo di intervento?"
-          help="Le scadenze dei controlli sono indicate sul libretto di impianto."
-          value={v("tipo")}
-          onChange={(x) => set("tipo", x)}
-          error={errors.tipo}
-          options={[
-            { value: "ordinaria", title: "Manutenzione ordinaria", description: "Pulizia, controlli e regolazioni" },
-            { value: "con-controllo-fumi", title: "Con controllo di efficienza", description: "Manutenzione più analisi dei fumi" },
-          ]}
-        />
+        <p className="flex gap-3 rounded-xl border border-border-card bg-background-primary-default p-5 text-copy text-text-secondary">
+          <RiInformationLine className="mt-0.5 size-5 shrink-0 text-text-accent" aria-hidden="true" />
+          Manutenzione dell&apos;impianto termico di casa. Nel prossimo passo ci dici dove si trova l&apos;immobile.
+        </p>
       );
     case "bagno":
       return (
@@ -167,9 +148,8 @@ export function DetailStep({ category, details, set, errors }: Props & { categor
             onChange={(x) => set("intervento", x)}
             error={errors.intervento}
             options={[
-              { value: "completa", title: "Rifare tutto il bagno", description: "Impianto, scarichi, sanitari e rubinetteria" },
-              { value: "vasca-doccia", title: "Trasformare la vasca in doccia" },
-              { value: "solo-sanitari", title: "Cambiare sanitari e rubinetti" },
+              { value: "completa", title: "Rifare la parte idraulica del bagno", description: "Impianto, sanitari e rubinetteria" },
+              { value: "solo-sanitari", title: "Cambiare sanitari e rubinetteria" },
             ]}
           />
           <NumberStepper label="Superficie del bagno" unit="m²" min={2} max={20} step={1} value={Number(details.mq ?? 6)} onChange={(x) => set("mq", x)} />
@@ -214,31 +194,20 @@ export function DetailStep({ category, details, set, errors }: Props & { categor
       return (
         <div className="space-y-8">
           <NumberStepper label="Persone in casa" unit="" min={1} max={8} step={1} value={Number(details.persone ?? 4)} onChange={(x) => set("persone", x)} />
-          <ChoiceGroup
-            label="Che uso vuoi farne?"
-            value={v("uso")}
-            onChange={(x) => set("uso", x)}
-            error={errors.uso}
-            options={[
-              { value: "acqua-calda", title: "Acqua calda sanitaria" },
-              { value: "integrazione-riscaldamento", title: "Anche integrazione al riscaldamento", description: "Richiede un progetto dedicato" },
-            ]}
-          />
+          <p className="text-small text-text-secondary">Il dimensionamento definitivo si fa al sopralluogo, in base a casa ed esposizione.</p>
         </div>
       );
     case "riparazione":
       return (
         <ChoiceGroup
-          label="Qual è il problema?"
+          label="Cosa va riparato?"
           help="Se c'è acqua che esce adesso, chiudi il rubinetto generale e chiamaci."
           value={v("tipo")}
           onChange={(x) => set("tipo", x)}
           error={errors.tipo}
           options={[
-            { value: "perdita", title: "Una perdita d'acqua" },
-            { value: "scarico", title: "Uno scarico lento o intasato" },
-            { value: "rubinetteria", title: "Rubinetti, miscelatori o cassetta WC" },
-            { value: "boiler", title: "Boiler o scaldabagno" },
+            { value: "impianto", title: "L'impianto idraulico", description: "Una perdita o un guasto" },
+            { value: "boiler", title: "Il boiler a gas" },
             { value: "altro", title: "Altro" },
           ]}
         />

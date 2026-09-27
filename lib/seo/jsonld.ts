@@ -1,7 +1,6 @@
 import { company, primaryAddress } from "@/content/company";
 import type { Faq } from "@/content/faq";
 import type { Service } from "@/content/services";
-import { zones } from "@/content/zones";
 import { siteUrl } from "./metadata";
 
 const DAY_NAMES = ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -39,10 +38,7 @@ export function businessJsonLd() {
       opens: h.opens,
       closes: h.closes,
     })),
-    areaServed: [
-      { "@type": "AdministrativeArea", name: "Provincia di Brescia" },
-      ...zones.flatMap((z) => z.municipalities.map((m) => ({ "@type": "City", name: m }))),
-    ],
+    areaServed: { "@type": "AdministrativeArea", name: "Provincia di Brescia" },
     paymentAccepted: company.paymentMethods.join(", "),
     currenciesAccepted: "EUR",
   };

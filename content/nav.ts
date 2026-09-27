@@ -25,8 +25,6 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
       { label: "Chi siamo", href: "/chi-siamo" },
       { label: "SANATHERM", href: "/sanatherm" },
       { label: "Bioedilizia", href: "/bioedilizia" },
-      { label: "Lavori", href: "/lavori" },
-      { label: "Zone servite", href: "/zone-servite" },
       { label: "Domande frequenti", href: "/faq" },
     ],
   },

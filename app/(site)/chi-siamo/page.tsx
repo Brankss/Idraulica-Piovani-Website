@@ -14,18 +14,19 @@ export const metadata: Metadata = pageMetadata({
   path: "/chi-siamo",
 });
 
+// From the client's own copy (idraulicapiovani.com, home page).
 const values = [
   {
-    title: "Progettare prima di installare",
-    text: "Ogni impianto parte dal sopralluogo e dal disegno: misure, carichi, percorsi. Un lavoro pensato bene dura di più e costa meno nel tempo.",
+    title: "Un servizio completo",
+    text: "Progettazione, installazione e manutenzione degli impianti: seguiamo il lavoro dall'inizio alla fine.",
   },
   {
-    title: "Innovare con giudizio",
-    text: "Condensazione, radiante, solare, recupero dell'acqua: adottiamo le tecnologie nuove quando migliorano davvero la casa, non per moda.",
+    title: "Esperienza e innovazione",
+    text: "Dai progettisti agli installatori, ogni persona del nostro staff unisce esperienza e attitudine all'innovazione.",
   },
   {
-    title: "Esserci anche dopo",
-    text: "Manutenzione, assistenza e consigli: restiamo il riferimento per l'impianto anche a lavoro finito.",
+    title: "Puntualità e precisione",
+    text: "Veniamo incontro alle esigenze di ogni cliente con puntualità e precisione.",
   },
 ];
 
@@ -46,17 +47,14 @@ export default function ChiSiamoPage() {
             <SectionHeading id="storia-title" eyebrow="La nostra storia" title="Dal 1930, con lo sguardo avanti" />
             <div className="mt-6 space-y-4 text-lead text-text-secondary">
               <p>
-                Idraulica Piovani lavora a Brescia dal {company.foundedYear}. In quasi un secolo gli impianti sono cambiati molto: oggi
-                progettiamo caldaie a condensazione, sistemi radianti, impianti solari e di recupero dell&apos;acqua.
+                Idraulica Piovani lavora a Brescia dal {company.foundedYear}: dalla semplice riparazione dell&apos;impianto idraulico fino alla
+                realizzazione di impianti di bioedilizia e di sfruttamento delle energie alternative.
               </p>
               <p>
-                Oggi l&apos;impresa è guidata da {company.owner}. La formazione tecnica ci permette di seguire ogni lavoro dal progetto
-                all&apos;installazione, fino alla manutenzione negli anni.
+                Siamo specializzati nella progettazione e installazione di impianti solari, caldaie a condensazione e sistemi di riscaldamento
+                bio, a parete e a battiscopa: soluzioni che abbassano la spesa energetica delle famiglie.
               </p>
-              <p>
-                Produciamo direttamente il battiscopa radiante SANATHERM, e da sempre ci dedichiamo alla bioedilizia e al risparmio
-                energetico.
-              </p>
+              <p>Produciamo direttamente il sistema a battiscopa radiante SANATHERM.</p>
             </div>
           </div>
           <Figure image={images.rameCollettore} aspect="4 / 3" sizes="(min-width: 1024px) 45vw, 100vw" />

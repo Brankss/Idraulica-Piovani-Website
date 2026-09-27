@@ -14,7 +14,7 @@ export function UrgentBand() {
             </span>
             <div>
               <h2 id="urgenze-title" className="text-copy-strong">
-                Perdita d&apos;acqua o caldaia ferma?
+                Un guasto o una perdita d&apos;acqua?
               </h2>
               <p className="mt-1 text-small text-text-inverse-secondary">
                 Chiudi il rubinetto generale e chiamaci: {company.hoursLabel.toLowerCase()}.{" "}

@@ -63,7 +63,7 @@ export default function CookiePolicyPage() {
 
       <h2 id="terze-parti">3. Contenuti di terze parti (solo con consenso)</h2>
       <p>
-        La mappa nelle pagine Contatti e Zone servite è fornita da Google Ireland Limited. Quando la carichi, Google può impostare cookie propri
+        La mappa nella pagina Contatti è fornita da Google Ireland Limited. Quando la carichi, Google può impostare cookie propri
         e ricevere dati tecnici come il tuo indirizzo IP. Fino a quando non dai il consenso vedi solo un&apos;immagine segnaposto e un
         collegamento a Google Maps. Maggiori informazioni:{" "}
         <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">

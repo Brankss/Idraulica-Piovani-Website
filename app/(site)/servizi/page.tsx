@@ -10,7 +10,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Servizi idraulici e di riscaldamento a Brescia",
   description:
-    "Pronto intervento, riparazioni, caldaie a condensazione, riscaldamento radiante, bagni, solare termico, acqua piovana e stufe in terra cruda a Brescia e provincia.",
+    "Pronto intervento, riparazioni, caldaie a condensazione, riscaldamento radiante, bagni, impianti solari, acqua piovana e stufe in terra cruda a Brescia e provincia.",
   path: "/servizi",
 });
 
@@ -24,7 +24,7 @@ export default function ServiziPage() {
         breadcrumb={<Crumbs items={[{ name: "Servizi", path: "/servizi" }]} />}
         eyebrow="Servizi"
         title="Cosa facciamo"
-        lead="Dal rubinetto che perde all'impianto di una casa nuova: progettazione, installazione e manutenzione, con un unico referente."
+        lead="Dalla semplice riparazione dell'impianto idraulico fino agli impianti di bioedilizia: progettazione, installazione e manutenzione."
       />
       <Section>
         <Container className="space-y-14">

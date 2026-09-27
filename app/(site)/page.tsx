@@ -14,7 +14,6 @@ import { SanathermDrawing, sanathermLegend } from "@/components/site/sanatherm-d
 import { ServiceList } from "@/components/site/service-list";
 import { ArrowLink, Container, CtaLink, Eyebrow, Section, SectionHeading } from "@/components/site/ui";
 import { UrgentBand } from "@/components/site/urgent-band";
-import { ZoneList } from "@/components/site/zone-list";
 import { faqJsonLd } from "@/lib/seo/jsonld";
 import { pageMetadata } from "@/lib/seo/metadata";
 
@@ -88,7 +87,7 @@ export default function HomePage() {
               id="servizi-title"
               eyebrow="Servizi"
               title="Tutto l'impianto, dalla riparazione al progetto"
-              lead="Interveniamo sul guasto di oggi e progettiamo l'impianto dei prossimi vent'anni."
+              lead="Dalla semplice riparazione all'impianto completo: progettazione, installazione e manutenzione."
             />
             <ArrowLink href="/servizi" className="shrink-0">
               Tutti i servizi
@@ -151,15 +150,15 @@ export default function HomePage() {
               id="bio-title"
               eyebrow="Bioedilizia"
               title="Case che consumano poco e rispettano chi ci vive"
-              lead="Solare termico, recupero dell'acqua piovana, fitodepurazione, stufe in terra cruda: impianti pensati per ridurre i consumi di oggi senza pesare su quelli di domani."
+              lead="Impianti solari, recupero dell'acqua piovana, fitodepurazione, stufe in terra cruda: soluzioni che abbassano la spesa energetica e rispettano l'ambiente."
             />
             <ul className="mt-6 space-y-2 text-copy text-text-secondary">
               <li>· Riscaldamento radiante a bassa temperatura</li>
-              <li>· Acqua calda dal sole e accumuli</li>
-              <li>· Acqua piovana per irrigazione e WC</li>
+              <li>· Impianti solari</li>
+              <li>· Recupero e uso dell&apos;acqua piovana</li>
             </ul>
             <ArrowLink href="/bioedilizia" className="mt-6">
-              La nostra casa bio in legno
+              Scopri la bioedilizia
             </ArrowLink>
           </div>
         </Container>
@@ -220,24 +219,6 @@ export default function HomePage() {
               Chi siamo
             </ArrowLink>
           </div>
-        </Container>
-      </Section>
-
-      {/* Zones */}
-      <Section labelledBy="zone-title">
-        <Container>
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <SectionHeading
-              id="zone-title"
-              eyebrow="Dove lavoriamo"
-              title="Brescia e provincia"
-              lead="Organizziamo le uscite per zona: meno strada per noi, orari migliori per te."
-            />
-            <ArrowLink href="/zone-servite" className="shrink-0">
-              Tutti i comuni
-            </ArrowLink>
-          </div>
-          <ZoneList className="mt-10" />
         </Container>
       </Section>
 

@@ -1,5 +1,12 @@
 import type { QuoteCategory } from "@/lib/quote/types";
 
+/**
+ * Services — ONLY what Idraulica Piovani states on its own website
+ * (idraulicapiovani.com: home, /bioedilizia, /contatti). Each service lists
+ * its source in `verified`. Do not add capabilities the client has not
+ * confirmed: customers will call asking for them. See docs/verifica-contenuti.md.
+ */
+
 export type ServiceIcon =
   | "alarm"
   | "tools"
@@ -30,6 +37,8 @@ export type Service = {
   urgent?: boolean;
   faqs: { q: string; a: string }[];
   related: string[];
+  /** Where the client states this service (audit trail) */
+  verified: string;
 };
 
 export const services: Service[] = [
@@ -39,34 +48,26 @@ export const services: Service[] = [
     shortTitle: "Pronto intervento",
     icon: "alarm",
     urgent: true,
-    summary:
-      "Perdite, tubi rotti, scarichi bloccati, caldaia ferma: chiamaci e ti diciamo subito cosa fare.",
+    summary: "Un guasto all'impianto o una perdita d'acqua? Chiamaci negli orari di apertura.",
     metaTitle: "Pronto intervento idraulico a Brescia",
     metaDescription:
-      "Perdite d'acqua, tubi rotti, scarichi intasati o caldaia in blocco a Brescia e provincia: chiama Idraulica Piovani, ti guidiamo al telefono e organizziamo l'intervento.",
+      "Pronto intervento idraulico a Brescia e provincia: guasti all'impianto, perdite d'acqua e boiler a gas. Chiama Idraulica Piovani.",
     intro: [
-      "Quando c'è acqua dove non dovrebbe esserci, conta la velocità. Al telefono ti guidiamo nei primi gesti e organizziamo l'intervento il prima possibile, dando precedenza alle situazioni che possono causare danni.",
-      "Le urgenze non si prenotano online: chiamaci o scrivici su WhatsApp, dal lunedì al venerdì negli orari di apertura.",
+      "Quando c'è un guasto all'impianto idraulico, chiamaci: ti diciamo come metterti in sicurezza e quando possiamo intervenire.",
+      "Le urgenze non si prenotano online: telefona o scrivici su WhatsApp, dal lunedì al venerdì negli orari di apertura.",
     ],
     includes: {
       title: "Interveniamo su",
-      items: [
-        "Perdite e infiltrazioni d'acqua",
-        "Tubazioni rotte, forate o gelate",
-        "Scarichi e colonne intasate",
-        "Caldaia in blocco o senza acqua calda",
-        "Rubinetti, cassette e sanitari che perdono",
-        "Ricerca del guasto dopo un allagamento",
-      ],
+      items: ["Guasti all'impianto idraulico", "Perdite d'acqua", "Boiler a gas"],
     },
     highlight: {
       title: "Cosa fare subito",
       tone: "urgent",
       items: [
-        "Chiudi il rubinetto generale dell'acqua (di solito vicino al contatore).",
+        "Chiudi il rubinetto generale dell'acqua.",
         "Se l'acqua raggiunge prese o quadri elettrici, stacca l'interruttore generale.",
         "Se senti odore di gas: niente fiamme né interruttori, apri le finestre, chiudi il contatore del gas e chiama il pronto intervento gas del tuo distributore (numero in bolletta) o il 112.",
-        "Fotografa il danno: ti servirà per l'assicurazione.",
+        "Fotografa il danno: può servirti per l'assicurazione.",
       ],
     },
     quoteCategory: null,
@@ -74,97 +75,76 @@ export const services: Service[] = [
     faqs: [
       {
         q: "Posso prenotare online un intervento urgente?",
-        a: "No: per le urgenze serve parlarsi subito. Chiamaci o scrivici su WhatsApp e ti diciamo quando possiamo arrivare.",
-      },
-      {
-        q: "Quanto costa un'uscita urgente?",
-        a: "Dipende da orario, distanza e tipo di guasto. Te lo diciamo al telefono prima di partire, così sai in anticipo come funziona.",
+        a: "No: per le urgenze serve parlarsi subito. Chiamaci o scrivici su WhatsApp.",
       },
     ],
     related: ["riparazioni-idrauliche", "caldaie-a-condensazione"],
+    verified: "Home: «pronto intervento idraulico», «riparazione di boiler a gas», «riparazione degli impianti idraulici».",
   },
   {
     slug: "riparazioni-idrauliche",
-    title: "Riparazioni idrauliche",
+    title: "Riparazioni e manutenzione",
     shortTitle: "Riparazioni",
     icon: "tools",
-    summary:
-      "Perdite, rubinetti, scarichi e boiler a gas: troviamo il guasto e lo ripariamo a regola d'arte.",
-    metaTitle: "Riparazione impianti idraulici a Brescia",
+    summary: "Riparazione e manutenzione degli impianti idraulici e dei boiler a gas.",
+    metaTitle: "Riparazione e manutenzione impianti idraulici a Brescia",
     metaDescription:
-      "Riparazione di perdite, tubazioni, rubinetteria, scarichi e boiler a gas a Brescia e provincia. Idraulica Piovani, dal 1930.",
+      "Riparazione e manutenzione di impianti idraulici e riparazione di boiler a gas a Brescia e provincia. Idraulica Piovani, dal 1930.",
     intro: [
-      "Una piccola perdita trascurata diventa presto un danno grande. Individuiamo l'origine del problema prima di intervenire, così ripariamo una volta sola e nel punto giusto.",
-      "Per i guasti che non sono urgenti puoi prenotare direttamente una visita dal calendario online.",
+      "Dalla semplice riparazione alla manutenzione periodica: ci occupiamo dell'impianto idraulico di casa perché continui a funzionare bene nel tempo.",
+      "Per i guasti che non sono urgenti puoi prenotare una visita direttamente dal calendario online.",
     ],
     includes: {
-      title: "Cosa ripariamo",
-      items: [
-        "Ricerca e riparazione di perdite, anche sotto traccia",
-        "Sostituzione di tratti di tubazione",
-        "Rubinetteria, miscelatori e cassette di scarico",
-        "Scarichi lenti o intasati",
-        "Boiler e scaldabagni a gas",
-        "Riduttori di pressione e autoclavi",
-      ],
+      title: "Cosa facciamo",
+      items: ["Riparazione degli impianti idraulici", "Riparazione di boiler a gas", "Manutenzione degli impianti idraulici"],
     },
     quoteCategory: "riparazione",
     bookable: true,
-    faqs: [
-      {
-        q: "Riparate anche impianti installati da altri?",
-        a: "Sì. Prima di intervenire verifichiamo lo stato dell'impianto e ti spieghiamo cosa conviene riparare e cosa sostituire.",
-      },
-    ],
+    faqs: [],
     related: ["pronto-intervento-idraulico", "ristrutturazione-bagni"],
+    verified: "Home: «riparazione degli impianti idraulici», «riparazione di boiler a gas», «manutenzione degli impianti idraulici».",
   },
   {
     slug: "caldaie-a-condensazione",
-    title: "Caldaie a condensazione",
+    title: "Caldaie e termosifoni",
     shortTitle: "Caldaie",
     icon: "fire",
-    summary:
-      "Scelta, installazione, sostituzione e manutenzione della caldaia, con libretto e documenti in regola.",
-    metaTitle: "Sostituzione e manutenzione caldaie a Brescia",
+    summary: "Installazione di caldaie a condensazione, sostituzione di termosifoni e caldaie, manutenzione degli impianti termici.",
+    metaTitle: "Caldaie a condensazione e termosifoni a Brescia",
     metaDescription:
-      "Installazione e sostituzione di caldaie a condensazione e manutenzione periodica a Brescia e provincia. Sopralluogo, pratiche e libretto di impianto.",
+      "Installazione di nuove caldaie a condensazione, sostituzione di termosifoni e caldaie, trasformazione e manutenzione degli impianti di riscaldamento a Brescia.",
     intro: [
-      "Una caldaia a condensazione recupera il calore contenuto nei fumi, che una caldaia tradizionale disperde dal camino: a parità di comfort consuma meno gas.",
-      "Ti aiutiamo a scegliere il modello adatto alla tua casa, la installiamo e la seguiamo nel tempo con la manutenzione periodica.",
+      "Una caldaia a condensazione recupera parte del calore contenuto nei fumi, che una caldaia tradizionale disperde: a parità di comfort consuma meno.",
+      "Installiamo nuove caldaie, sostituiamo termosifoni e caldaie esistenti e ci occupiamo della manutenzione degli impianti termici.",
     ],
     includes: {
-      title: "Il servizio comprende",
+      title: "Cosa facciamo",
       items: [
-        "Sopralluogo e dimensionamento",
-        "Rimozione e smaltimento della vecchia caldaia",
-        "Adeguamento dello scarico fumi, se necessario",
-        "Installazione, collaudo e messa in funzione",
-        "Dichiarazione di conformità dell'impianto",
-        "Manutenzione ordinaria e controllo di efficienza energetica",
+        "Installazione di caldaie a condensazione",
+        "Sostituzione di termosifoni e caldaie",
+        "Trasformazione degli impianti di riscaldamento",
+        "Manutenzione degli impianti termici",
       ],
     },
     highlight: {
-      title: "Perché conviene",
+      title: "Perché la condensazione",
       tone: "neutral",
       items: [
-        "Consumi più bassi rispetto a una caldaia tradizionale",
-        "Rende al meglio con impianti a bassa temperatura (radianti, SANATHERM)",
-        "Si abbina al solare termico per l'acqua calda",
+        "Consuma meno di una caldaia tradizionale a parità di calore",
+        "Rende al meglio con impianti a bassa temperatura, come il riscaldamento radiante",
       ],
     },
     quoteCategory: "caldaia",
     bookable: true,
     faqs: [
       {
-        q: "Ogni quanto va fatta la manutenzione?",
-        a: "La frequenza dipende dal tipo di impianto e dalle indicazioni del costruttore riportate sul libretto. Alla prima visita ti diciamo le scadenze del tuo impianto.",
-      },
-      {
         q: "La sostituzione della caldaia rientra nelle detrazioni?",
-        a: "Spesso sì, ma le regole cambiano di anno in anno. Nel preventivo ti indichiamo la documentazione necessaria; per la parte fiscale fai riferimento al tuo commercialista o CAF.",
+        a: "Spesso sì, ma le regole cambiano di anno in anno: chiedicelo in fase di preventivo. Per la parte fiscale fai riferimento al tuo commercialista o CAF.",
       },
     ],
     related: ["riscaldamento-radiante", "solare-termico-e-rinnovabili"],
+    verified:
+      "Home: «nuove caldaie a condensazione», «installazione delle caldaie», «Sostituzione termosifoni e caldaie», «trasformazione degli impianti di riscaldamento»; Bioedilizia: «manutenzione degli impianti termici».",
   },
   {
     slug: "riscaldamento-radiante",
@@ -172,99 +152,81 @@ export const services: Service[] = [
     shortTitle: "Radiante",
     icon: "radiant",
     eco: true,
-    summary:
-      "A pavimento, a parete o a battiscopa: calore uniforme a bassa temperatura, che consuma meno.",
+    summary: "A pavimento, a parete o a battiscopa: calore uniforme con acqua a bassa temperatura.",
     metaTitle: "Riscaldamento a pavimento, parete e battiscopa a Brescia",
     metaDescription:
-      "Impianti di riscaldamento radiante a pavimento, a parete e a battiscopa SANATHERM a Brescia. Calore uniforme a bassa temperatura, progettato e installato da Idraulica Piovani.",
+      "Riscaldamento radiante a pavimento, a parete e a battiscopa SANATHERM, prodotto da Idraulica Piovani. Brescia e provincia.",
     intro: [
-      "I sistemi radianti scaldano le superfici invece dell'aria: il calore è distribuito in modo uniforme, senza correnti né polvere sollevata.",
-      "Lavorano con acqua a bassa temperatura, e per questo si abbinano bene a caldaie a condensazione, pompe di calore e solare termico.",
+      "I sistemi radianti scaldano le superfici invece dell'aria: il calore è distribuito in modo uniforme e l'impianto lavora con acqua a bassa temperatura.",
+      "Per questo si abbinano bene alle caldaie a condensazione e agli impianti solari.",
     ],
     includes: {
-      title: "Tre soluzioni, una per ogni casa",
-      items: [
-        "A pavimento: per nuove costruzioni e ristrutturazioni complete",
-        "A parete: quando il pavimento non si può toccare",
-        "A battiscopa SANATHERM: prodotto da noi, si installa lungo il perimetro delle stanze senza demolire i pavimenti",
-      ],
+      title: "Tre soluzioni",
+      items: ["A pavimento", "A parete", "A battiscopa, con SANATHERM: il sistema che produciamo noi"],
     },
     quoteCategory: "radiante",
     bookable: true,
     faqs: [
       {
-        q: "Posso installare il radiante senza rifare i pavimenti?",
-        a: "Sì, con il battiscopa radiante SANATHERM o con i pannelli a parete. Valutiamo insieme la soluzione durante il sopralluogo.",
+        q: "Posso avere il riscaldamento radiante senza rifare i pavimenti?",
+        a: "Sì: il battiscopa radiante SANATHERM corre lungo le pareti e il sistema a parete non tocca il pavimento. Valutiamo insieme la soluzione durante il sopralluogo.",
       },
     ],
     related: ["caldaie-a-condensazione", "solare-termico-e-rinnovabili"],
+    verified:
+      "Home: «Riscaldamento a pavimento», «Riscaldamento a parete», «Riscaldamento a battiscopa», «Produciamo direttamente il sistema a battiscopa radiante SANATHERM».",
   },
   {
     slug: "ristrutturazione-bagni",
     title: "Ristrutturazione bagni",
     shortTitle: "Bagni",
     icon: "shower",
-    summary:
-      "Dal rifacimento degli impianti alla posa dei sanitari: un unico referente per la parte idraulica del bagno.",
+    summary: "Rifacimento della parte idraulica del bagno: impianto, sanitari e rubinetteria.",
     metaTitle: "Ristrutturazione bagno a Brescia",
     metaDescription:
-      "Rifacimento impianto idraulico, sostituzione vasca con doccia, sanitari e rubinetteria a Brescia e provincia. Preventivo online indicativo in 2 minuti.",
+      "Ristrutturazione bagni a Brescia e provincia: rifacimento dell'impianto idraulico, sanitari e rubinetteria. Stima online indicativa in 2 minuti.",
     intro: [
-      "Rifare il bagno significa rifare prima di tutto ciò che non si vede: tubazioni e scarichi. Li progettiamo per durare, poi montiamo sanitari e rubinetteria.",
-      "Con il preventivo online ottieni subito una stima indicativa della parte idraulica.",
+      "Rifare il bagno significa rifare prima di tutto ciò che non si vede: le tubazioni. Ci occupiamo della parte idraulica della ristrutturazione.",
+      "Con il preventivo online ottieni subito una stima indicativa.",
     ],
     includes: {
       title: "Cosa facciamo",
-      items: [
-        "Rifacimento di impianto idraulico e scarichi",
-        "Sostituzione della vasca con doccia",
-        "Sanitari sospesi o a terra",
-        "Rubinetteria, miscelatori termostatici e termoarredo",
-      ],
+      items: ["Rifacimento dell'impianto idraulico del bagno", "Posa di sanitari e rubinetteria"],
     },
     quoteCategory: "bagno",
     bookable: true,
     faqs: [
       {
-        q: "La stima comprende anche piastrelle e opere murarie?",
-        a: "No: la stima online riguarda la parte idraulica (impianti, scarichi, sanitari, rubinetteria). Le altre lavorazioni si definiscono al sopralluogo.",
+        q: "La stima online comprende anche piastrelle e opere murarie?",
+        a: "No: la stima riguarda la parte idraulica. Il resto si definisce al sopralluogo.",
       },
     ],
     related: ["riparazioni-idrauliche", "caldaie-a-condensazione"],
+    verified: "Home: «ristrutturazione di bagni».",
   },
   {
     slug: "solare-termico-e-rinnovabili",
-    title: "Solare termico e rinnovabili",
+    title: "Impianti solari",
     shortTitle: "Solare",
     icon: "sun",
     eco: true,
-    summary:
-      "Progettiamo e installiamo impianti solari per l'acqua calda e l'integrazione al riscaldamento.",
-    metaTitle: "Impianti solari termici a Brescia",
+    summary: "Progettazione e installazione di impianti solari e soluzioni per il recupero energetico.",
+    metaTitle: "Impianti solari a Brescia",
     metaDescription:
-      "Progettazione e installazione di impianti solari termici per acqua calda sanitaria e integrazione al riscaldamento a Brescia. Idraulica Piovani.",
+      "Progettazione e installazione di impianti solari e soluzioni di recupero energetico a Brescia e provincia. Idraulica Piovani.",
     intro: [
-      "Il sole può produrre gran parte dell'acqua calda di casa. Progettiamo l'impianto in base a quante persone lo usano e a dove si trova l'abitazione.",
-      "Abbinato a un impianto radiante a bassa temperatura, il solare termico può contribuire anche al riscaldamento.",
+      "Progettiamo e installiamo impianti solari: soluzioni che abbassano la spesa energetica della famiglia e rispettano l'ambiente.",
+      "Ogni impianto parte da un sopralluogo, per valutare casa, esposizione e impianto esistente.",
     ],
     includes: {
-      title: "Il servizio comprende",
-      items: [
-        "Progetto e dimensionamento dell'impianto",
-        "Collettori solari e bollitori di accumulo",
-        "Integrazione con caldaia e impianti radianti",
-        "Manutenzione e controllo del circuito solare",
-      ],
+      title: "Cosa facciamo",
+      items: ["Progettazione di impianti solari", "Installazione di impianti solari", "Recupero energetico"],
     },
     quoteCategory: "solare",
     bookable: true,
-    faqs: [
-      {
-        q: "Il solare termico funziona anche d'inverno?",
-        a: "Sì, con rendimento minore. Per questo si abbina sempre a una caldaia o a un'altra fonte che interviene quando il sole non basta.",
-      },
-    ],
+    faqs: [],
     related: ["riscaldamento-radiante", "caldaie-a-condensazione"],
+    verified: "Home: «progettazione e installazione di impianti solari», «recupero energetico», «sfruttamento delle energie alternative».",
   },
   {
     slug: "acque-meteoriche-e-fitodepurazione",
@@ -272,32 +234,22 @@ export const services: Service[] = [
     shortTitle: "Acqua piovana",
     icon: "drop",
     eco: true,
-    summary:
-      "Recupero dell'acqua piovana per irrigazione e WC, e sistemi di depurazione naturale degli scarichi.",
+    summary: "Recupero e riuso dell'acqua piovana e piani di fitodepurazione.",
     metaTitle: "Recupero acqua piovana e fitodepurazione a Brescia",
-    metaDescription:
-      "Progettazione di impianti di recupero delle acque meteoriche e piani di fitodepurazione per abitazioni a Brescia e provincia.",
+    metaDescription: "Recupero e uso delle acque meteoriche e piani di fitodepurazione a Brescia e provincia. Idraulica Piovani.",
     intro: [
-      "L'acqua piovana raccolta dal tetto può alimentare l'irrigazione e gli scarichi dei WC, riducendo il consumo di acqua potabile.",
-      "La fitodepurazione tratta gli scarichi domestici con un sistema naturale di piante e substrati filtranti. Ogni progetto parte da un sopralluogo.",
+      "L'acqua piovana raccolta può essere recuperata e riutilizzata, riducendo il consumo di acqua potabile.",
+      "La fitodepurazione tratta le acque di scarico con un sistema naturale. Ogni progetto parte da un sopralluogo.",
     ],
     includes: {
-      title: "Cosa progettiamo",
-      items: [
-        "Sistemi di raccolta e accumulo dell'acqua piovana",
-        "Filtri, pompe e reti duali per WC e irrigazione",
-        "Piani di fitodepurazione per scarichi domestici",
-      ],
+      title: "Cosa facciamo",
+      items: ["Recupero e uso delle acque meteoriche", "Piani di fitodepurazione"],
     },
     quoteCategory: "acque",
     bookable: true,
-    faqs: [
-      {
-        q: "Serve un'autorizzazione per la fitodepurazione?",
-        a: "Gli scarichi sono soggetti alle regole del Comune e degli enti competenti. Durante il progetto verifichiamo cosa serve nel tuo caso.",
-      },
-    ],
+    faqs: [],
     related: ["solare-termico-e-rinnovabili", "stufe-in-terra-cruda-e-termocamini"],
+    verified: "Home: «sviluppiamo piani di fitodepurazione, recupero e uso delle acque meteoriche», «Recupero acque meteoriche».",
   },
   {
     slug: "stufe-in-terra-cruda-e-termocamini",
@@ -305,32 +257,23 @@ export const services: Service[] = [
     shortTitle: "Stufe e termocamini",
     icon: "leaf",
     eco: true,
-    summary:
-      "Stufe a legna in terra cruda ad alto potere termico e termocamini collegati all'impianto di casa.",
+    summary: "Stufe a legna in terra cruda ad alto potere termico e sistemi termocamino.",
     metaTitle: "Stufe in terra cruda e termocamini a Brescia",
     metaDescription:
-      "Costruzione di stufe a legna in terra cruda ad accumulo e installazione di sistemi termocamino collegati all'impianto di riscaldamento. Idraulica Piovani, Brescia.",
+      "Costruzione di stufe a legna in terra cruda ad alto potere termico e sistemi termocamino a Brescia e provincia. Idraulica Piovani.",
     intro: [
-      "Una stufa in terra cruda accumula il calore della legna e lo rilascia lentamente per ore. La costruiamo su misura per la tua casa.",
-      "Il termocamino riscalda l'acqua dell'impianto mentre il fuoco è acceso, contribuendo al riscaldamento di tutta la casa.",
+      "Costruiamo stufe a legna in terra cruda ad alto potere termico, su misura per la casa.",
+      "Realizziamo anche sistemi termocamino. Ogni progetto parte da un sopralluogo.",
     ],
     includes: {
       title: "Cosa facciamo",
-      items: [
-        "Progetto e costruzione di stufe in terra cruda",
-        "Installazione di termocamini e collegamento all'impianto",
-        "Integrazione con caldaia e accumuli",
-      ],
+      items: ["Stufe a legna in terra cruda", "Sistemi termocamino"],
     },
     quoteCategory: "stufe",
     bookable: true,
-    faqs: [
-      {
-        q: "Quanto tempo serve per costruire una stufa in terra cruda?",
-        a: "Dipende da dimensioni e finiture. Lo definiamo nel progetto, dopo il sopralluogo.",
-      },
-    ],
+    faqs: [],
     related: ["riscaldamento-radiante", "acque-meteoriche-e-fitodepurazione"],
+    verified: "Home: «costruiamo stufe a legna in terra cruda ad alto potere termico e sistemi termocamino».",
   },
 ];
 

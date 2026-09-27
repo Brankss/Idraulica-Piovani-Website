@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { BookingFlow } from "@/components/booking/booking-flow";
+import { DemoNotice } from "@/components/site/demo-notice";
+import { primaryPhone } from "@/content/company";
 import { Container, Eyebrow } from "@/components/site/ui";
 import { pageMetadata } from "@/lib/seo/metadata";
 
@@ -21,6 +23,10 @@ export default function PrenotaPage() {
             Scegli il giorno e l&apos;ora: ti proponiamo per primi quelli in cui siamo già vicino a te.
           </h1>
         </div>
+        <DemoNotice>
+          Anteprima del nuovo sito: le disponibilità sono simulate e le prenotazioni non vengono registrate. Per un appuntamento chiama il{" "}
+          {primaryPhone.display}.
+        </DemoNotice>
         <Suspense fallback={<div className="h-96 animate-pulse rounded-card bg-background-secondary-default motion-reduce:animate-none" aria-hidden="true" />}>
           <BookingFlow />
         </Suspense>

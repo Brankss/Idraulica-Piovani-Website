@@ -11,7 +11,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = pageMetadata({
   title: "Domande frequenti",
-  description: "Preventivi, sopralluoghi, urgenze, zone servite, pagamenti, detrazioni e SANATHERM: le risposte alle domande più frequenti.",
+  description: "Preventivi, sopralluoghi, urgenze, zone, pagamenti, detrazioni e SANATHERM: le risposte alle domande più frequenti.",
   path: "/faq",
 });
 

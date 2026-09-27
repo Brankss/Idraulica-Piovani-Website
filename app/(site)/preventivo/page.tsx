@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { QuoteWizard } from "@/components/quote/quote-wizard";
+import { DemoNotice } from "@/components/site/demo-notice";
 import { Container, Eyebrow } from "@/components/site/ui";
 import { pageMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = pageMetadata({
   title: "Preventivo online",
   description:
-    "Calcola in due minuti una stima indicativa per caldaia, bagno, riscaldamento radiante, solare termico o riparazioni a Brescia e provincia. Senza impegno.",
+    "Calcola in due minuti una stima indicativa per caldaia, bagno, riscaldamento radiante, impianti solari o riparazioni a Brescia e provincia. Senza impegno.",
   path: "/preventivo",
 });
 
@@ -21,6 +22,7 @@ export default function PreventivoPage() {
             Rispondi a qualche domanda: ti mostriamo subito una stima indicativa, senza impegno.
           </h1>
         </div>
+        <DemoNotice>Anteprima del nuovo sito: le stime usano prezzi di esempio e le richieste non vengono inviate.</DemoNotice>
         <Suspense fallback={<div className="h-96 animate-pulse rounded-card bg-background-secondary-default motion-reduce:animate-none" aria-hidden="true" />}>
           <QuoteWizard />
         </Suspense>

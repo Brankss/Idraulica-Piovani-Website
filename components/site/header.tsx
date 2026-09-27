@@ -141,7 +141,7 @@ export function Header() {
 
                 <nav aria-label="Menu mobile" className="flex-1 overflow-y-auto px-5 py-4">
                   <ul className="divide-y divide-separator-border">
-                    {[{ label: "Home", href: "/" }, ...mainNav, { label: "Lavori", href: "/lavori" }, { label: "Domande frequenti", href: "/faq" }].map(
+                    {[{ label: "Home", href: "/" }, ...mainNav, { label: "Domande frequenti", href: "/faq" }].map(
                       (item) => {
                         const active = item.href === "/" ? pathname === "/" : isActive(pathname, item.href);
                         return (

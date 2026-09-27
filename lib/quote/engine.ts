@@ -39,14 +39,10 @@ export function estimateQuote(input: QuoteInput, book: Pricebook): QuoteResult {
     case "caldaia":
       return caldaia(input, book, meta);
     case "manutenzione": {
-      const r = book.manutenzione[input.tipo];
-      const label =
-        input.tipo === "ordinaria"
-          ? "Manutenzione ordinaria della caldaia"
-          : "Manutenzione con controllo di efficienza (analisi fumi)";
-      return finalize(input, book, meta, [{ label, min: r[0], max: r[1] }], [
-        "Caldaia accessibile e in condizioni di funzionamento normali.",
-        "Eventuali ricambi esclusi: te li indichiamo prima di sostituirli.",
+      const r = book.manutenzione;
+      return finalize(input, book, meta, [{ label: "Manutenzione dell'impianto termico", min: r[0], max: r[1] }], [
+        "Impianto accessibile e in condizioni di funzionamento normali.",
+        "Eventuali ricambi esclusi.",
       ]);
     }
     case "bagno":
@@ -68,7 +64,7 @@ function caldaia(input: CaldaiaInput, book: Pricebook, meta: Meta): QuoteResult 
       kind: "inspection",
       category: "caldaia",
       reason:
-        "Senza un impianto esistente si tratta di progettarne uno nuovo (tubazioni, terminali, scarico fumi): ti prepariamo un progetto dopo il sopralluogo.",
+        "Senza un impianto esistente si tratta di progettarne uno nuovo (tubazioni e terminali): ti prepariamo un progetto dopo il sopralluogo.",
       ...meta,
     };
   }
@@ -78,36 +74,23 @@ function caldaia(input: CaldaiaInput, book: Pricebook, meta: Meta): QuoteResult 
     {
       label:
         input.uso === "combinata"
-          ? "Caldaia a condensazione combinata (riscaldamento + acqua calda), installazione e smaltimento della vecchia"
-          : "Caldaia a condensazione solo riscaldamento, installazione e smaltimento della vecchia",
+          ? "Sostituzione con caldaia a condensazione (riscaldamento e acqua calda) e installazione"
+          : "Sostituzione con caldaia a condensazione (solo riscaldamento) e installazione",
       min: base[0] * factor,
       max: base[1] * factor,
     },
   ];
-  const fumi = book.caldaia.fumi[input.fumi];
-  if (fumi[1] > 0) {
-    lines.push({
-      label: input.fumi === "si" ? "Adeguamento dello scarico fumi" : "Possibile adeguamento dello scarico fumi",
-      min: fumi[0],
-      max: fumi[1],
-    });
-  }
-  const assumptions = [
+  return finalize(input, book, meta, lines, [
     "Caldaia di fascia media, marca e modello da scegliere insieme.",
-    "Impianto di distribuzione esistente in buono stato.",
-  ];
-  if (input.fumi === "non-so") {
-    assumptions.push("Lo scarico fumi va verificato al sopralluogo: per questo la forbice è più ampia.");
-  }
-  return finalize(input, book, meta, lines, assumptions);
+    "Impianto esistente in buono stato: eventuali adeguamenti si valutano al sopralluogo.",
+  ]);
 }
 
 function bagno(input: BagnoInput, book: Pricebook, meta: Meta): QuoteResult {
   const cfg = book.bagno[input.intervento];
   const extraMq = Math.max(0, input.mq - cfg.mqIncluded);
   const labels: Record<BagnoInput["intervento"], string> = {
-    completa: "Rifacimento completo della parte idraulica (impianto, scarichi, sanitari, rubinetteria)",
-    "vasca-doccia": "Sostituzione della vasca con doccia (parte idraulica)",
+    completa: "Rifacimento della parte idraulica del bagno (impianto, sanitari, rubinetteria)",
     "solo-sanitari": "Sostituzione di sanitari e rubinetteria",
   };
   const lines: QuoteLine[] = [
@@ -141,7 +124,7 @@ function radiante(input: RadianteInput, book: Pricebook, meta: Meta): QuoteResul
     battiscopa: `Battiscopa radiante SANATHERM per circa ${input.mq} m²`,
   };
   return finalize(input, book, meta, [{ label: labels[input.sistema], min, max }], [
-    "Generatore di calore (caldaia o pompa di calore) escluso.",
+    "Generatore di calore escluso.",
     input.sistema === "pavimento"
       ? "Massetti e pavimenti esclusi."
       : "Lo sviluppo effettivo dipende dalla forma delle stanze: lo misuriamo al sopralluogo.",
@@ -149,15 +132,6 @@ function radiante(input: RadianteInput, book: Pricebook, meta: Meta): QuoteResul
 }
 
 function solare(input: SolareInput, book: Pricebook, meta: Meta): QuoteResult {
-  if (input.uso === "integrazione-riscaldamento") {
-    return {
-      kind: "inspection",
-      category: "solare",
-      reason:
-        "L'integrazione al riscaldamento va progettata su esposizione, isolamento e impianto esistente: ti prepariamo un progetto dopo il sopralluogo.",
-      ...meta,
-    };
-  }
   const tier = book.solare.byHousehold.find((t) => input.persone <= t.maxPersons)!;
   return finalize(
     input,
@@ -165,12 +139,12 @@ function solare(input: SolareInput, book: Pricebook, meta: Meta): QuoteResult {
     meta,
     [
       {
-        label: `Impianto solare termico per l'acqua calda, famiglia di ${input.persone} ${input.persone === 1 ? "persona" : "persone"}`,
+        label: `Impianto solare per una famiglia di ${input.persone} ${input.persone === 1 ? "persona" : "persone"}`,
         min: tier.range[0],
         max: tier.range[1],
       },
     ],
-    ["Tetto accessibile con esposizione favorevole.", "Bollitore di accumulo compreso."],
+    ["Tetto accessibile con esposizione favorevole: il dimensionamento si fa al sopralluogo."],
   );
 }
 
@@ -184,10 +158,8 @@ function riparazione(input: RiparazioneInput, book: Pricebook, meta: Meta): Quot
     };
   }
   const labels: Record<Exclude<RiparazioneInput["tipo"], "altro">, string> = {
-    perdita: "Ricerca e riparazione della perdita",
-    scarico: "Disostruzione e sistemazione dello scarico",
-    rubinetteria: "Riparazione o sostituzione della rubinetteria",
-    boiler: "Riparazione del boiler o scaldabagno",
+    impianto: "Riparazione dell'impianto idraulico",
+    boiler: "Riparazione del boiler a gas",
   };
   const r = book.riparazione.tipo[input.tipo];
   return finalize(
@@ -198,7 +170,7 @@ function riparazione(input: RiparazioneInput, book: Pricebook, meta: Meta): Quot
       { label: "Uscita e diagnosi", min: book.riparazione.uscita[0], max: book.riparazione.uscita[1] },
       { label: labels[input.tipo], min: r[0], max: r[1] },
     ],
-    ["Ricambi standard compresi; componenti speciali preventivati a parte."],
+    ["Ricambi standard compresi; componenti particolari preventivati a parte."],
   );
 }
 

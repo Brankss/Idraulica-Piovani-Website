@@ -3,19 +3,19 @@ import { cx } from "@/utils/cx";
 export const processSteps = [
   {
     title: "Ci racconti cosa serve",
-    text: "Al telefono, su WhatsApp o con il preventivo online. Se è un'urgenza ti diciamo subito cosa fare.",
+    text: "Al telefono, su WhatsApp o con il preventivo online.",
   },
   {
     title: "Sopralluogo",
-    text: "Veniamo a vedere l'impianto, prendiamo le misure e ti consigliamo la soluzione adatta alla tua casa.",
+    text: "Veniamo a vedere l'impianto e ti consigliamo la soluzione adatta alla tua casa.",
   },
   {
-    title: "Preventivo scritto",
-    text: "Voci, materiali e tempi indicati uno per uno: sai cosa pagherai prima di cominciare.",
+    title: "Preventivo",
+    text: "Ti prepariamo il preventivo per il lavoro da fare.",
   },
   {
-    title: "Lavoro a regola d'arte",
-    text: "Installazione, collaudo e dichiarazione di conformità. Poi ti seguiamo con la manutenzione.",
+    title: "Installazione e manutenzione",
+    text: "Realizziamo l'impianto e ce ne occupiamo anche nella manutenzione.",
   },
 ];
 

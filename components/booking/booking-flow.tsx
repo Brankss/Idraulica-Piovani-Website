@@ -6,7 +6,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { Button } from "@/components/base/buttons/button";
 import { primaryPhone, telHref } from "@/content/company";
-import { getZone, zoneForMunicipality } from "@/content/zones";
+import { zoneForMunicipality } from "@/content/zones";
 import { ChoiceGroup } from "@/components/forms/choice";
 import { ErrorSummary, Honeypot, PrivacyChecks, TextAreaField, TextField } from "@/components/forms/fields";
 import { MunicipalityField, type MunicipalityValue } from "@/components/forms/municipality-field";
@@ -117,7 +117,7 @@ function Flow() {
     <p className="mb-6 flex gap-3 rounded-xl bg-background-inverse p-4 text-small text-text-inverse">
       <RiAlarmWarningLine className="mt-0.5 size-5 shrink-0 text-text-accent-inverse" aria-hidden="true" />
       <span>
-        Per perdite, allagamenti o caldaia ferma non prenotare:{" "}
+        Per guasti urgenti o perdite d&apos;acqua non prenotare:{" "}
         <a href={telHref(primaryPhone)} className="font-semibold text-text-accent-inverse underline">
           chiama il {primaryPhone.display}
         </a>
@@ -362,7 +362,7 @@ function Flow() {
         {[
           ["Appuntamento", service.label],
           ["Quando", when],
-          ["Dove", `${address}, ${place.name}${place.zoneId ? ` · ${getZone(place.zoneId).name}` : ""}`],
+          ["Dove", `${address}, ${place.name}`],
           ["Contatti", `${contact.name} · ${contact.phone} · ${contact.email}`],
           ...(contact.notes ? [["Note", contact.notes]] : []),
         ].map(([k, v]) => (

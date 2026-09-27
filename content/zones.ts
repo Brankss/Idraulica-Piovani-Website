@@ -1,7 +1,7 @@
 /**
  * Service zones used by the quote engine (travel surcharge) and the booking
  * engine (travel buffers + clustering). Municipalities and travel times are a
- * first draft — [DA CONFERMARE] with the owner (see docs/content-todo.md).
+ * first draft — [DA CONFERMARE] with the owner (see docs/da-confermare.md).
  */
 
 export type ZoneId = "brescia" | "nord-est" | "sud-est" | "valtrompia" | "valsabbia" | "ovest";

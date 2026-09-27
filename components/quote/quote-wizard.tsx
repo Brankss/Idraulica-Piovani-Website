@@ -33,15 +33,15 @@ export function buildInput(s: State): QuoteInput | null {
   const d = s.details;
   switch (s.category) {
     case "caldaia":
-      return { category: "caldaia", zone, uso: d.uso as never, abitazione: d.abitazione as never, fumi: d.fumi as never, impiantoAttuale: d.impiantoAttuale as never };
+      return { category: "caldaia", zone, uso: d.uso as never, abitazione: d.abitazione as never, impiantoAttuale: d.impiantoAttuale as never };
     case "manutenzione":
-      return { category: "manutenzione", zone, tipo: d.tipo as never };
+      return { category: "manutenzione", zone };
     case "bagno":
       return { category: "bagno", zone, intervento: d.intervento as never, mq: Number(d.mq ?? 6), sospesi: Boolean(d.sospesi) };
     case "radiante":
       return { category: "radiante", zone, sistema: d.sistema as never, mq: Number(d.mq ?? 90), contesto: d.contesto as never };
     case "solare":
-      return { category: "solare", zone, persone: Number(d.persone ?? 4), uso: d.uso as never };
+      return { category: "solare", zone, persone: Number(d.persone ?? 4) };
     case "riparazione":
       return { category: "riparazione", zone, tipo: d.tipo as never };
     case "acque":

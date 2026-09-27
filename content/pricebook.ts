@@ -22,18 +22,13 @@ export const pricebook: Pricebook = {
       combinata: [2200, 3200],
       "solo-riscaldamento": [1900, 2800],
     },
-    fumi: { si: [300, 900], no: [0, 0], "non-so": [0, 900] },
     casaIndipendenteFactor: 1.1,
   },
 
-  manutenzione: {
-    ordinaria: [90, 140],
-    "con-controllo-fumi": [130, 200],
-  },
+  manutenzione: [90, 140],
 
   bagno: {
     completa: { base: [3500, 5500], perMq: [150, 250], mqIncluded: 5 },
-    "vasca-doccia": { base: [1800, 3500], perMq: [0, 0], mqIncluded: 0 },
     "solo-sanitari": { base: [900, 2200], perMq: [0, 0], mqIncluded: 0 },
     sospesiExtra: [250, 600],
   },
@@ -59,9 +54,7 @@ export const pricebook: Pricebook = {
   riparazione: {
     uscita: [70, 120],
     tipo: {
-      perdita: [150, 600],
-      scarico: [100, 300],
-      rubinetteria: [80, 250],
+      impianto: [150, 600],
       boiler: [120, 400],
     },
   },

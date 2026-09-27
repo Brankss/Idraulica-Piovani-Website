@@ -32,7 +32,7 @@ const specs: [string, string][] = [
 const comparison: [string, string, string][] = [
   ["Temperatura dell'acqua", "Alta, tipicamente 60–70 °C", "Bassa, 35–40 °C"],
   ["Distribuzione del calore", "Concentrata vicino al radiatore; l'aria calda sale al soffitto", "Lungo tutto il perimetro, dal basso"],
-  ["Con pompa di calore o solare", "Resa limitata", "Lavora nel suo campo ideale"],
+  ["Con caldaia a condensazione o solare", "Rendono meno ad alta temperatura", "Lavora nel suo campo ideale"],
   ["In ristrutturazione", "Tubazioni da portare a ogni radiatore", "Corre sul perimetro: niente pavimenti da demolire"],
   ["Ingombro", "Corpi scaldanti sotto le finestre", "Un battiscopa di circa 15 cm"],
 ];
@@ -44,7 +44,7 @@ const faqs: Faq[] = [
   },
   {
     q: "Si può abbinare alla caldaia che ho già?",
-    a: "Spesso sì, con una regolazione adeguata. Rende al meglio con generatori a bassa temperatura come caldaie a condensazione, pompe di calore e solare termico.",
+    a: "Lo valutiamo al sopralluogo. SANATHERM rende al meglio con acqua a bassa temperatura, come quella prodotta dalle caldaie a condensazione e dagli impianti solari.",
   },
   {
     q: "Serve rompere i pavimenti per installarlo?",

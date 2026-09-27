@@ -2,6 +2,7 @@ import { RiMailLine, RiMapPin2Line, RiPhoneLine, RiTimeLine, RiWalletLine, RiWha
 import type { Metadata } from "next";
 import { company, formatAddress, primaryPhone, telHref, whatsappHref } from "@/content/company";
 import { ContactForm } from "@/components/forms/contact-form";
+import { DemoNotice } from "@/components/site/demo-notice";
 import { Crumbs } from "@/components/site/crumbs";
 import { StaticMap } from "@/components/site/static-map";
 import { ArrowLink, Container, PageHeader, Section } from "@/components/site/ui";
@@ -60,37 +61,37 @@ export default function ContattiPage() {
               </li>
             </ul>
 
-            <dl className="grid gap-5 rounded-card bg-background-secondary-default p-6 text-copy">
+            <div className="grid gap-5 rounded-card bg-background-secondary-default p-6 text-copy">
               <div className="flex gap-3">
                 <RiTimeLine className="mt-0.5 size-5 shrink-0 text-text-accent" aria-hidden="true" />
-                <div>
+                <dl>
                   <dt className="text-copy-strong">Orari</dt>
                   <dd className="text-text-secondary">
                     Lunedì–venerdì 8:00–12:00 e 13:00–19:00
                     <br />
                     Sabato e domenica chiuso
                   </dd>
-                </div>
+                </dl>
               </div>
               <div className="flex gap-3">
                 <RiMapPin2Line className="mt-0.5 size-5 shrink-0 text-text-accent" aria-hidden="true" />
-                <div>
+                <dl>
                   <dt className="text-copy-strong">Indirizzi</dt>
                   {company.addresses.map((a) => (
                     <dd key={a.street} className="text-text-secondary">
-                      {a.label}: {formatAddress(a)}
+                      {formatAddress(a)}
                     </dd>
                   ))}
-                </div>
+                </dl>
               </div>
               <div className="flex gap-3">
                 <RiWalletLine className="mt-0.5 size-5 shrink-0 text-text-accent" aria-hidden="true" />
-                <div>
+                <dl>
                   <dt className="text-copy-strong">Pagamenti</dt>
                   <dd className="text-text-secondary">{company.paymentMethods.join(", ")}</dd>
-                </div>
+                </dl>
               </div>
-            </dl>
+            </div>
 
             <StaticMap />
           </div>
@@ -105,6 +106,9 @@ export default function ContattiPage() {
               è più veloce.
             </p>
             <div className="mt-6">
+              <DemoNotice>
+                Anteprima del nuovo sito: il modulo non invia messaggi. Scrivi a {company.email} o chiama il {primaryPhone.display}.
+              </DemoNotice>
               <ContactForm />
             </div>
           </div>

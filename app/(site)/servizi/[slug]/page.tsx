@@ -20,9 +20,6 @@ const imageFor: Record<string, SiteImage | undefined> = {
   "caldaie-a-condensazione": images.caldaia,
   "ristrutturazione-bagni": images.bagno,
   "riparazioni-idrauliche": images.rameCollettore,
-  "solare-termico-e-rinnovabili": images.bioSerra,
-  "acque-meteoriche-e-fitodepurazione": images.bioCantiere1,
-  "stufe-in-terra-cruda-e-termocamini": images.bioInterno,
 };
 
 export function generateStaticParams() {

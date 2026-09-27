@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { services } from "@/content/services";
 import { siteUrl } from "@/lib/seo/metadata";
 
-/** /lavori and /grazie are noindex and deliberately left out. */
+/** /grazie is noindex and deliberately left out. */
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const page = (path: string, priority: number, changeFrequency: "weekly" | "monthly" | "yearly" = "monthly") => ({
@@ -20,7 +20,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/prenota", 0.7),
     page("/bioedilizia", 0.7),
     page("/chi-siamo", 0.6),
-    page("/zone-servite", 0.6),
     page("/faq", 0.6),
     page("/contatti", 0.7),
     page("/privacy", 0.2, "yearly"),

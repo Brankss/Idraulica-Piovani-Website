@@ -11,7 +11,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Bioedilizia e risparmio energetico a Brescia",
   description:
-    "Impianti per la bioedilizia a Brescia: riscaldamento radiante a bassa temperatura, solare termico, recupero dell'acqua piovana, fitodepurazione e stufe in terra cruda.",
+    "Impianti per la bioedilizia a Brescia: riscaldamento radiante a bassa temperatura, impianti solari, recupero dell'acqua piovana, fitodepurazione e stufe in terra cruda.",
   path: "/bioedilizia",
 });
 
@@ -87,7 +87,7 @@ export default function BioediliziaPage() {
             id="casa-title"
             eyebrow="Dal nostro archivio"
             title="La casa bio in legno con serra solare"
-            lead="Una casa in legno costruita a mezza costa, con una serra solare esposta a sud che accumula il calore d'inverno. Qui sotto alcune fotografie dal cantiere alla casa abitata."
+            lead="Alcune fotografie dal nostro archivio: la casa bio in legno con serra solare esposta a sud, dalla fase di costruzione alla casa finita."
           />
           <ul className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-5">
             {bioArchive.map((img) => (

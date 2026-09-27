@@ -20,18 +20,16 @@ export type CaldaiaInput = Base & {
   category: "caldaia";
   uso: "combinata" | "solo-riscaldamento";
   abitazione: "appartamento" | "casa-indipendente";
-  fumi: "si" | "no" | "non-so";
   impiantoAttuale: "caldaia" | "nessuno";
 };
 
 export type ManutenzioneInput = Base & {
   category: "manutenzione";
-  tipo: "ordinaria" | "con-controllo-fumi";
 };
 
 export type BagnoInput = Base & {
   category: "bagno";
-  intervento: "completa" | "vasca-doccia" | "solo-sanitari";
+  intervento: "completa" | "solo-sanitari";
   mq: number;
   sospesi: boolean;
 };
@@ -46,12 +44,11 @@ export type RadianteInput = Base & {
 export type SolareInput = Base & {
   category: "solare";
   persone: number;
-  uso: "acqua-calda" | "integrazione-riscaldamento";
 };
 
 export type RiparazioneInput = Base & {
   category: "riparazione";
-  tipo: "perdita" | "scarico" | "rubinetteria" | "boiler" | "altro";
+  tipo: "impianto" | "boiler" | "altro";
 };
 
 export type OnSiteOnlyInput = Base & {
@@ -97,10 +94,9 @@ export type Pricebook = {
   vatIncluded: boolean;
   caldaia: {
     base: Record<CaldaiaInput["uso"], Range>;
-    fumi: Record<CaldaiaInput["fumi"], Range>;
     casaIndipendenteFactor: number;
   };
-  manutenzione: Record<ManutenzioneInput["tipo"], Range>;
+  manutenzione: Range;
   bagno: Record<BagnoInput["intervento"], { base: Range; perMq: Range; mqIncluded: number }> & {
     sospesiExtra: Range;
   };

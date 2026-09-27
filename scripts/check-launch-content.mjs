@@ -13,11 +13,14 @@ const checks = [
 ];
 
 const failures = checks.filter((c) => c.pattern.test(readFileSync(c.file, "utf8")));
+if (process.env.NEXT_PUBLIC_SITE_MODE !== "live") {
+  failures.push({ message: "NEXT_PUBLIC_SITE_MODE non è «live»: il sito sarebbe pubblicato in modalità demo (noindex)." });
+}
 
 if (failures.length) {
   console.error("\n✖ Contenuti non pronti per il lancio:\n");
   for (const f of failures) console.error(`  - ${f.message}`);
-  console.error("\nVedi docs/content-todo.md. Per un build di anteprima usa `npm run build`.\n");
+  console.error("\nVedi docs/da-confermare.md. Per un build di anteprima usa `npm run build`.\n");
   process.exit(1);
 }
 console.log("✓ Contenuti pronti per il lancio.");

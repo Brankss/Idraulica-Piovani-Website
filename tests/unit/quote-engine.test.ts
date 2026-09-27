@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { pricebook } from "@/content/pricebook";
-import { estimateQuote, roundPrice } from "@/lib/quote/engine";
+import { estimateQuote, formatEuroRange, roundPrice } from "@/lib/quote/engine";
 import type { QuoteEstimate } from "@/lib/quote/types";
 
 const asEstimate = (r: ReturnType<typeof estimateQuote>) => {
@@ -11,10 +11,7 @@ const asEstimate = (r: ReturnType<typeof estimateQuote>) => {
 describe("estimateQuote", () => {
   it("prices a combined boiler replacement in Brescia without travel", () => {
     const r = asEstimate(
-      estimateQuote(
-        { category: "caldaia", zone: "brescia", uso: "combinata", abitazione: "appartamento", fumi: "no", impiantoAttuale: "caldaia" },
-        pricebook,
-      ),
+      estimateQuote({ category: "caldaia", zone: "brescia", uso: "combinata", abitazione: "appartamento", impiantoAttuale: "caldaia" }, pricebook),
     );
     expect(r.min).toBe(2200);
     expect(r.max).toBe(3200);
@@ -22,23 +19,19 @@ describe("estimateQuote", () => {
     expect(r.placeholder).toBe(true);
   });
 
-  it("widens the range when the flue is unknown and adds travel for far zones", () => {
+  it("applies the detached-house factor and adds travel for far zones", () => {
     const r = asEstimate(
-      estimateQuote(
-        { category: "caldaia", zone: "valsabbia", uso: "combinata", abitazione: "casa-indipendente", fumi: "non-so", impiantoAttuale: "caldaia" },
-        pricebook,
-      ),
+      estimateQuote({ category: "caldaia", zone: "valsabbia", uso: "combinata", abitazione: "casa-indipendente", impiantoAttuale: "caldaia" }, pricebook),
     );
-    // 2200×1.1=2420 → 2400; 3200×1.1=3520 → 3500; flue 0–900; travel 40–70
-    expect(r.min).toBe(2400 + 0 + 40);
-    expect(r.max).toBe(3500 + 900 + 70);
+    // 2200×1.1=2420 → 2400; 3200×1.1=3520 → 3500; travel 40–70
+    expect(r.min).toBe(2400 + 40);
+    expect(r.max).toBe(3500 + 70);
     expect(r.lines.map((l) => l.label)).toContain("Trasferta");
-    expect(r.assumptions.join(" ")).toMatch(/scarico fumi/);
   });
 
   it("asks for an inspection when there is no existing system", () => {
     const r = estimateQuote(
-      { category: "caldaia", zone: "brescia", uso: "combinata", abitazione: "appartamento", fumi: "no", impiantoAttuale: "nessuno" },
+      { category: "caldaia", zone: "brescia", uso: "combinata", abitazione: "appartamento", impiantoAttuale: "nessuno" },
       pricebook,
     );
     expect(r.kind).toBe("inspection");
@@ -49,10 +42,13 @@ describe("estimateQuote", () => {
     expect(estimateQuote({ category: "stufe", zone: "ovest" }, pricebook).kind).toBe("inspection");
   });
 
+  it("prices maintenance as a single item", () => {
+    const r = asEstimate(estimateQuote({ category: "manutenzione", zone: "brescia" }, pricebook));
+    expect([r.min, r.max]).toEqual([90, 140]);
+  });
+
   it("scales a full bathroom with the extra square metres", () => {
-    const r = asEstimate(
-      estimateQuote({ category: "bagno", zone: "brescia", intervento: "completa", mq: 8, sospesi: true }, pricebook),
-    );
+    const r = asEstimate(estimateQuote({ category: "bagno", zone: "brescia", intervento: "completa", mq: 8, sospesi: true }, pricebook));
     // base 3500–5500 + 3 extra m² × 150–250 = 3950–6250; sospesi 250–600
     expect(r.min).toBe(3950 + 250);
     expect(r.max).toBe(6250 + 600);
@@ -77,27 +73,29 @@ describe("estimateQuote", () => {
   });
 
   it("picks the solar tier by household size", () => {
-    const small = asEstimate(estimateQuote({ category: "solare", zone: "brescia", persone: 2, uso: "acqua-calda" }, pricebook));
-    const large = asEstimate(estimateQuote({ category: "solare", zone: "brescia", persone: 6, uso: "acqua-calda" }, pricebook));
+    const small = asEstimate(estimateQuote({ category: "solare", zone: "brescia", persone: 2 }, pricebook));
+    const large = asEstimate(estimateQuote({ category: "solare", zone: "brescia", persone: 6 }, pricebook));
     expect(small.min).toBe(3200);
     expect(large.min).toBe(5200);
-    expect(
-      estimateQuote({ category: "solare", zone: "brescia", persone: 4, uso: "integrazione-riscaldamento" }, pricebook).kind,
-    ).toBe("inspection");
   });
 
   it("adds call-out plus repair and unknown-zone travel", () => {
-    const r = asEstimate(estimateQuote({ category: "riparazione", zone: "unknown", tipo: "rubinetteria" }, pricebook));
-    expect(r.min).toBe(70 + 80 + 0);
-    expect(r.max).toBe(120 + 250 + 80);
+    const r = asEstimate(estimateQuote({ category: "riparazione", zone: "unknown", tipo: "boiler" }, pricebook));
+    expect(r.min).toBe(70 + 120 + 0);
+    expect(r.max).toBe(120 + 400 + 80);
+    expect(estimateQuote({ category: "riparazione", zone: "brescia", tipo: "altro" }, pricebook).kind).toBe("inspection");
   });
 });
 
-describe("roundPrice", () => {
+describe("formatting", () => {
   it("rounds to €10 under 1.000 and €50 above", () => {
     expect(roundPrice(134)).toBe(130);
     expect(roundPrice(2420)).toBe(2400);
     expect(roundPrice(3520)).toBe(3500);
     expect(roundPrice(5175)).toBe(5200);
+  });
+
+  it("groups thousands the Italian way even under 10.000", () => {
+    expect(formatEuroRange(2200, 3200)).toBe("2.200 – 3.200 €");
   });
 });

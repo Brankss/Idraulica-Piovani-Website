@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { company } from "@/content/company";
-import { siteUrl } from "@/lib/seo/metadata";
+import { demoRobots, siteUrl } from "@/lib/seo/metadata";
+import { isDemo } from "@/lib/site-mode";
 import "@/styles/globals.css";
 
 // Self-hosted at build time by next/font: the browser never calls Google.
@@ -35,6 +36,7 @@ export const metadata: Metadata = {
   description:
     "Impianti idraulici, caldaie, riscaldamento radiante e bioedilizia a Brescia e provincia. Preventivo online in 2 minuti e prenotazione del sopralluogo.",
   applicationName: company.brand,
+  robots: isDemo ? demoRobots : undefined,
   formatDetection: { telephone: false, address: false, email: false },
   openGraph: {
     type: "website",

@@ -62,7 +62,7 @@ export default function NoteLegaliPage() {
           e servono a illustrare un tipo di lavoro: non rappresentano impianti realizzati da noi.
         </li>
         <li>
-          Le immagini contrassegnate come <strong>«Foto d&apos;archivio»</strong> documentano lavori realizzati da {company.brand}.
+          Le immagini contrassegnate come <strong>«Foto d&apos;archivio»</strong> provengono dall&apos;archivio di {company.brand}.
         </li>
         <li>I disegni tecnici, come la sezione del battiscopa SANATHERM, sono schemi a scopo esplicativo.</li>
       </ul>

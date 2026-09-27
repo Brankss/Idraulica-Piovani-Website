@@ -4,7 +4,7 @@
  * value once and every surface stays consistent (local SEO depends on it).
  *
  * `confirmed: false` marks facts still to be verified with the owner before
- * launch; they are tracked in docs/content-todo.md.
+ * launch; they are tracked in docs/da-confermare.md.
  */
 
 export type Phone = {
@@ -25,10 +25,12 @@ export type OpeningSlot = {
 export const company = {
   brand: "Idraulica Piovani",
   tagline: "Idraulica · dal 1930",
-  /** [DA CONFERMARE] exact legal name (ditta individuale?) */
-  legalName: "Idraulica Piovani di Piovani Geom. Massimo",
+  /**
+   * Shown as on the client's current site. The exact legal form (ditta
+   * individuale? società?) is [DA CONFERMARE] before launch.
+   */
+  legalName: "Idraulica Piovani",
   legalNameConfirmed: false,
-  owner: "Geom. Massimo Piovani",
   foundedYear: 1930,
   vatNumber: "01780070171",
   /** [DA CONFERMARE] */
@@ -39,11 +41,11 @@ export const company = {
   siteUrl: "https://www.idraulicapiovani.com",
   phones: [
     { label: "Cellulare e WhatsApp", e164: "+393477357987", display: "347 735 7987", whatsapp: true },
-    { label: "Ufficio", e164: "+390306830780", display: "030 683 0780" },
+    { label: "Telefono fisso", e164: "+390306830780", display: "030 683 0780" },
   ] satisfies Phone[],
   addresses: [
     {
-      label: "Sede",
+      label: "Brescia",
       street: "Via Fermi, 42",
       postalCode: "25133",
       city: "Brescia",
@@ -52,8 +54,8 @@ export const company = {
       confirmed: true,
     },
     {
-      /** [DA CONFERMARE] role of this address (sede legale o operativa?) */
-      label: "Sede operativa",
+      /** Listed on the client's site without a role: [DA CONFERMARE] */
+      label: "Caino",
       street: "Via Villa Mattina, 44G5",
       postalCode: "25070",
       city: "Caino",
@@ -70,9 +72,6 @@ export const company = {
   hoursLabel: "Lun–Ven 8:00–12:00 · 13:00–19:00",
   hoursShort: "Lun–Ven 8–19",
   paymentMethods: ["Contanti", "Bonifico bancario", "Assegno"],
-  /** [DA CONFERMARE] official partnerships */
-  brands: ["Beretta", "Baxi", "Bosch"],
-  brandsConfirmed: false,
   areaServed: "Brescia e provincia",
 } as const;
 

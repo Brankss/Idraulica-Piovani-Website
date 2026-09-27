@@ -77,9 +77,7 @@ export function Footer() {
             {company.addresses.map((a) => (
               <p key={a.street} className="flex gap-2">
                 <RiMapPin2Line className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
-                <span>
-                  {a.label}: {formatAddress(a)}
-                </span>
+                <span>{formatAddress(a)}</span>
               </p>
             ))}
           </address>

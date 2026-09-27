@@ -20,8 +20,8 @@ export const bookableServices: BookableService[] = [
   },
   {
     id: "manutenzione-caldaia",
-    label: "Manutenzione caldaia",
-    description: "Manutenzione periodica e controllo di efficienza della caldaia.",
+    label: "Manutenzione impianto termico",
+    description: "Manutenzione della caldaia e dell'impianto di riscaldamento.",
     durationMin: 60,
     bufferMin: 15,
     confirmationMode: "request",
@@ -29,7 +29,7 @@ export const bookableServices: BookableService[] = [
   {
     id: "riparazione",
     label: "Riparazione non urgente",
-    description: "Rubinetti, scarichi lenti, piccole perdite sotto controllo, boiler.",
+    description: "Riparazione dell'impianto idraulico o del boiler a gas.",
     durationMin: 90,
     bufferMin: 15,
     confirmationMode: "request",
